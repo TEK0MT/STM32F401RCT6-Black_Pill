@@ -1,2 +1,2 @@
-../Src/CortexM4/CortexM4_CORE_NVIC.c:8:6:EnableIRQ	2
-../Src/CortexM4/CortexM4_CORE_NVIC.c:16:6:NVIC_DisableIRQ	2
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:8:6:EnableIRQ	2
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:16:6:NVIC_DisableIRQ	2
