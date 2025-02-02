@@ -1,0 +1,2 @@
+../Src/CortexM4/CortexM4_CORE_NVIC.c:8:6:EnableIRQ	16	static
+../Src/CortexM4/CortexM4_CORE_NVIC.c:16:6:NVIC_DisableIRQ	16	static
