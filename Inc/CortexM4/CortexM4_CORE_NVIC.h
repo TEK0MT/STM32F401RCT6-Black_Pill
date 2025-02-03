@@ -22,6 +22,8 @@
 
 /********************************Macro Declaration End****************************/
 
+#define NVIC_KEY 				0x1F
+#define NVIC_REGISTER_SELECTION 5
 /********************************Macro Function Declaration Start*****************/
 
 /********************************Macro Function Declaration End*******************/
@@ -52,6 +54,10 @@ typedef struct{
 	volatile uint32_t STIR;		// ( /W) register offset to trigger interrupts
 }NVIC_Type;
 
+/*
+ * List of IRQS numbers in one enum
+ * positions numbered by stm reference manual (RM0368)
+ * */
 typedef enum{
 	NMI_IRQ								= -14,
 	HardFault_IRQ						= -13,
@@ -128,9 +134,47 @@ typedef enum{
 
 
 /********************************Software Interfaces Declarations Start***********/
+/*
+ *@brief Enable interrupt
+ *@details Enable specific interrupt in NVIC Controller
+ *@Params take one IRQS_Types parameter
+ *@note irq must not be negative
+ * */
 void NVIC_EnableIRQ(IRQS_Types irq);
+
+/*
+*@brief Disable interrupt
+*@details Disable specific interrupt in NVIC Controller
+*@Params take one IRQS_Types parameter
+*@note irq must not be negative
+* */
 void NVIC_DisableIRQ(IRQS_Types irq);
 
+/*
+*@brief SetPending
+*@details Set specific interrupt to pending status in NVIC Controller
+*@Params take one IRQS_Types parameter
+*@note irq must not be negative
+* */
+void NVIC_SetPending(IRQS_Types irq);
+
+/*
+*@brief SetPending
+*@details Clear specific interrupt from pending status in NVIC Controller
+*@Params take one IRQS_Types parameter
+*@note irq must not be negative
+* */
+void NVIC_ClearPending(IRQS_Types irq);
+
+/*
+*@brief Get status
+*@details Get the status of specific interrupt is it active or not
+*@Params take one IRQS_Types parameter
+*@note irq must not be negative
+*@return 0 is active
+*@return 1 is not active
+* */
+uint32_t NVIC_GetActive(IRQS_Types irq);
 /********************************Software Interfaces Declarations End*************/
 
 #endif/* CORTEXM4_CORW_NVIC_H_*/

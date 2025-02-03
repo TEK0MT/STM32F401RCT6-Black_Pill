@@ -1,2 +1,5 @@
-D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:8:6:EnableIRQ	16	static
-D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:16:6:NVIC_DisableIRQ	16	static
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:16:6:EnableIRQ	16	static
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:29:6:NVIC_DisableIRQ	16	static
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:41:6:NVIC_SetPending	16	static
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:53:6:NVIC_ClearPending	16	static
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_NVIC.c:67:10:NVIC_GetActive	24	static
