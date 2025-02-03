@@ -5,7 +5,7 @@
  * @brief          : Definitions of NVIC software
  ******************************************************************************
  **/
-#include "../../Inc/CortexM4/CortexM4_CORE_NVIC.h"
+#include "CortexM4/CortexM4_CORE_NVIC.h"
 
 /*
  *@brief Enable interrupt
@@ -13,7 +13,7 @@
  *@Params take one IRQS_Types parameter
  *@note irq must not be negative
  * */
-void EnableIRQ(IRQS_Types irq){
+void NVIC_EnableIRQ(IRQS_Types irq){
 
 	if(irq >= 0){
 		NVIC->ISER[(((uint32_t)irq) >> NVIC_REGISTER_SELECTION)] = (1UL << ((uint32_t)irq & NVIC_KEY));
@@ -65,7 +65,7 @@ void NVIC_ClearPending(IRQS_Types irq){
 *@return 1 is not active
 * */
 uint32_t NVIC_GetActive(IRQS_Types irq){
-	uint32_t status = 0;
+
 	if(irq >= 0){
 				return ((NVIC->IABR[(((uint32_t)irq) >> NVIC_REGISTER_SELECTION)] & (1UL << ((uint32_t)irq & NVIC_KEY)) != (uint32_t)0)? 0UL : 1UL);
 			}
@@ -73,3 +73,31 @@ uint32_t NVIC_GetActive(IRQS_Types irq){
 	return 0UL;
 	}
 }
+
+/*
+*@brief Set priority
+*@details Set the priority of specific interrupt
+*@Params take two 1-IRQS_Types parameter 2- uint32_t priority for priority level
+*@note irq must not be negative
+* */
+void NVIC_SetPriority(IRQS_Types irq,uint32_t priority){
+	if(irq >= 0){
+			NVIC->IP[(uint32_t)irq] =  (uint8_t)((priority << (8 - NVIC_PRIORITY_BITS) & (uint32_t)0xFF));
+	}
+	else{
+		/*Nothing*/
+	}
+}
+
+
+/*
+*@brief Get priority
+*@details Get the priority of specific interrupt
+*@note irq must not be negative
+* */
+uint32_t NVIC_GetPriority(IRQS_Types irq){
+
+			return (NVIC->IP[(uint32_t)irq] >> (8 - NVIC_PRIORITY_BITS));
+
+}
+

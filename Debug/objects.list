@@ -1,4 +1,5 @@
 "./Src/CortexM4/CortexM4_CORE_NVIC.o"
+"./Src/CortexM4/CortexM4_CORE_SCB.o"
 "./Src/main.o"
 "./Src/syscalls.o"
 "./Src/sysmem.o"

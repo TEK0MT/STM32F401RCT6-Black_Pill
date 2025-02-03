@@ -20,10 +20,14 @@
 #define NVIC 		((NVIC_Type *)(NVIC_BASE)) //Macro used to access the struct
 
 
-/********************************Macro Declaration End****************************/
-
 #define NVIC_KEY 				0x1F
 #define NVIC_REGISTER_SELECTION 5
+
+#define NVIC_PRIORITY_BITS 						4 //Stm32f401xx use 4 bits for priority
+
+/********************************Macro Declaration End****************************/
+
+
 /********************************Macro Function Declaration Start*****************/
 
 /********************************Macro Function Declaration End*******************/
@@ -49,7 +53,7 @@ typedef struct{
 	uint32_t Reserved3[24U];
 	volatile uint32_t IABR[8U];	// (R/W)  register offset to active interrupts
 	uint32_t Reserved4[56U];
-	volatile uint32_t IP[240U];	// (R/W) register offset to put interrupts priority
+	volatile uint8_t IP[240U];	// (R/W) register offset to put interrupts priority
 	uint32_t Reserved5[644U];
 	volatile uint32_t STIR;		// ( /W) register offset to trigger interrupts
 }NVIC_Type;
@@ -175,6 +179,21 @@ void NVIC_ClearPending(IRQS_Types irq);
 *@return 1 is not active
 * */
 uint32_t NVIC_GetActive(IRQS_Types irq);
+
+/*
+*@brief Set priority
+*@details Set the priority of specific interrupt
+*@Params take two 1-IRQS_Types parameter 2- uint32_t priority for priority level
+*@note irq must not be negative
+* */
+void NVIC_SetPriority(IRQS_Types irq,uint32_t priority);
+
+/*
+*@brief Get priority
+*@details Get the priority of specific interrupt
+*@note irq must not be negative
+* */
+uint32_t NVIC_GetPriority(IRQS_Types irq);
 /********************************Software Interfaces Declarations End*************/
 
 #endif/* CORTEXM4_CORW_NVIC_H_*/
