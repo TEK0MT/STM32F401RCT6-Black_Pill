@@ -23,6 +23,7 @@ C_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 Src/CortexM4 \
+Src/HAL/RCC \
 Src \
 Startup \
 
