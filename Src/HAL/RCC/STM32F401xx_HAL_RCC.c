@@ -18,6 +18,8 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *osc){
 	else{
 		if(osc->OscillatorType == RCC_OSCILLATORTYPE_HSE){
 			if(osc->HSEState == RCC_HSE_ON){
+				SET_BIT(RCC->CFGR,RCC_CFGR_Sw0_POS);
+				CLEAR_BIT(RCC->CFGR,RCC_CFGR_Sw1_POS);
 				SET_BIT(RCC->CR,RCC_CR_HSEON_MASK);
 			}
 			else{
@@ -27,6 +29,8 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *osc){
 		else if (osc->OscillatorType == RCC_OSCILLATORTYPE_HSI){
 			if(osc->HSIState == RCC_HSI_ON){
 				SET_BIT(RCC->CR,RCC_CR_HSION_MASK);
+				CLEAR_BIT(RCC->CFGR,RCC_CFGR_Sw0_POS);
+				CLEAR_BIT(RCC->CFGR,RCC_CFGR_Sw1_POS);
 			}
 			else{
 				CLEAR_BIT(RCC->CR,RCC_CR_HSION_MASK);
@@ -35,6 +39,7 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *osc){
 		else if(osc->OscillatorType == RCC_OSCILLATORTYPE_LSE){
 			if(osc->LSEState == RCC_LSE_ON){
 				SET_BIT(RCC->BDCR,RCC_BDCR_LSEON_MASK);
+
 			}
 			else{
 				CLEAR_BIT(RCC->BDCR,RCC_BDCR_LSEON_MASK);
@@ -43,6 +48,7 @@ HAL_StatusTypeDef HAL_RCC_OscConfig(RCC_OscInitTypeDef *osc){
 		else if(osc->OscillatorType == RCC_OSCILLATORTYPE_LSI){
 			if(osc->LSIState == RCC_LSI_ON){
 				SET_BIT(RCC->CSR,RCC_CSR_LSION_MASK);
+
 			}
 			else{
 				CLEAR_BIT(RCC->CSR,RCC_CSR_LSION_MASK);

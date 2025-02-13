@@ -1,5 +1,6 @@
 "./Src/CortexM4/CortexM4_CORE_NVIC.o"
 "./Src/CortexM4/CortexM4_CORE_SCB.o"
+"./Src/CortexM4/CortexM4_CORE_Systic.o"
 "./Src/HAL/RCC/STM32F401xx_HAL_RCC.o"
 "./Src/main.o"
 "./Src/syscalls.o"

@@ -74,6 +74,12 @@
 #define RCC_OSCILLATORTYPE_LSE				(0x00000004U)
 #define RCC_OSCILLATORTYPE_LSI				(0x00000008U)
 
+#define RCC_CFGR_Sw0_POS					(0U)
+#define RCC_CFGR_Sw0_MASK					(0x01 << RCC_CFGR_Sw0_POS)
+
+#define RCC_CFGR_Sw1_POS					(1U)
+#define RCC_CFGR_Sw1_MASK					(0x01 << RCC_CFGR_Sw1_POS)
+
 #define RCC_CR_HSEON_POS					(16U)
 #define RCC_CR_HSEON_MASK					(0x01 << RCC_CR_HSEON_POS)		//Mask for High speed external oscillator
 
