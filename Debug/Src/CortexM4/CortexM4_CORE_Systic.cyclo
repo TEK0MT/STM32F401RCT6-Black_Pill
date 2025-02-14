@@ -1,3 +1,6 @@
-D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:10:10:Systic_Init	3
-D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:31:10:Systic_DeInit	1
-D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:40:10:Systic_WaitBlocking	4
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:13:10:Systic_Init	3
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:34:10:Systic_DeInit	1
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:43:10:Systic_WaitBlocking	4
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:61:10:Systic_SingleInterval	4
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:76:10:Systic_PereodicInterval	4
+F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_Systic.c:93:6:SysTick_Handler	3

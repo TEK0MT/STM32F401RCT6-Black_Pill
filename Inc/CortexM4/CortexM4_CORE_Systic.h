@@ -24,7 +24,7 @@
 #define SYSTIC_BIT_ENABLE_MASK			(0x01 << SYSTIC_BIT_ENABLE_POS)
 
 #define SYSTIC_BIT_IRQ_POS 			(1U)
-#define SYSTIC_BIT_IRQ_MASK			(0x01 << SYSTIC_BIT_ENABLE_POS)
+#define SYSTIC_BIT_IRQ_MASK			(0x01 << SYSTIC_BIT_IRQ_POS)
 
 #define SYSTIC_BIT_CLOCK_SELECT_POS 			(2U)
 #define SYSTIC_BIT_CLOCK_SELECT_MASK			(0x01 << SYSTIC_BIT_ENABLE_POS)
@@ -32,6 +32,8 @@
 #define SYSTIC_COUNTERFLAG_POS					(16U)
 #define SYSTIC_COUNTERFLAG_MASK					(1UL << SYSTIC_COUNTERFLAG_POS)
 
+#define SYSTIC_SINGLEINTERVAL_MODE 				0
+#define SYSTIC_PERIODICINTERVAL_MODE 			1
 
 /********************************Macro Declaration End****************************/
 
@@ -61,6 +63,8 @@ typedef struct{
 uint32_t Systic_Init(uint32_t load);
 uint32_t Systic_DeInit(void);
 uint32_t Systic_WaitBlocking(uint32_t load);
+uint32_t Systic_SingleInterval(uint32_t load ,ptr_function *call_back);
+uint32_t Systic_PereodicInterval(uint32_t load ,ptr_function *call_back);
 /********************************Software Interfaces Declarations End*************/
 
 

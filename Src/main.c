@@ -13,17 +13,20 @@
 #include "HAL/RCC/STM32F401xx_HAL_RCC.h"
 #include "CortexM4/CortexM4_CORE_Systic.h"
 void System_Clcok_Config(void);
-uint32_t timer = 0;
+uint32_t timmer = 0;
+void isr(void){
+	timmer++;
+}
 int main(void)
 {
+	SCB_SetGroupPriority(SCB_GROUPPRIORITY_2);
 	System_Clcok_Config();
 
 	Systic_Init(1000);
-
+	Systic_PereodicInterval(999999,isr);
     /* Loop forever */
 	while(1){
-		Systic_WaitBlocking(1999999);
-		timer++;
+
 	}
 }
 void System_Clcok_Config(void){
