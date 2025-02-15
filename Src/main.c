@@ -8,10 +8,10 @@
 
 
 
+#include <CortexM4/CortexM4_CORE_Systick.h>
 #include "CortexM4/CortexM4_CORE_NVIC.h"
 #include "CortexM4/CortexM4_CORE_SCB.h"
 #include "HAL/RCC/STM32F401xx_HAL_RCC.h"
-#include "CortexM4/CortexM4_CORE_Systic.h"
 void System_Clcok_Config(void);
 uint32_t timmer = 0;
 void isr(void){
@@ -22,8 +22,8 @@ int main(void)
 	SCB_SetGroupPriority(SCB_GROUPPRIORITY_2);
 	System_Clcok_Config();
 
-	Systic_Init(1000);
-	Systic_PereodicInterval(999999,isr);
+	Systick_Init(1000);
+	Systick_PereodicInterval(999999,isr);
     /* Loop forever */
 	while(1){
 

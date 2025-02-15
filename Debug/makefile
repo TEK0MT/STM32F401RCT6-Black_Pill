@@ -61,8 +61,8 @@ all: main-build
 main-build: STM32F401RCT6-Black_Pill.elf secondary-outputs
 
 # Tool invocations
-STM32F401RCT6-Black_Pill.elf STM32F401RCT6-Black_Pill.map: $(OBJS) $(USER_OBJS) F:\Embedded\ Systems\STM32F401RCT6-Black_Pill\STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "STM32F401RCT6-Black_Pill.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"F:\Embedded Systems\STM32F401RCT6-Black_Pill\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F401RCT6-Black_Pill.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+STM32F401RCT6-Black_Pill.elf STM32F401RCT6-Black_Pill.map: $(OBJS) $(USER_OBJS) D:\Embedded\ Systems\STM32F401RCT6-Black_Pill\STM32F401RCTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "STM32F401RCT6-Black_Pill.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\Embedded Systems\STM32F401RCT6-Black_Pill\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="STM32F401RCT6-Black_Pill.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

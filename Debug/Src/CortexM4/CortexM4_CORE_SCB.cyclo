@@ -1,2 +1,2 @@
-F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_SCB.c:17:6:SCB_SetGroupPriority	1
-F:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_SCB.c:34:10:SCB_GetPriorityGrouping	1
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_SCB.c:17:6:SCB_SetGroupPriority	1
+D:/Embedded Systems/STM32F401RCT6-Black_Pill/Src/CortexM4/CortexM4_CORE_SCB.c:34:10:SCB_GetPriorityGrouping	1

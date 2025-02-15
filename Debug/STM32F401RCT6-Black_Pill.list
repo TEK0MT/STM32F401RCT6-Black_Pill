@@ -27,25 +27,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000030  00000000  00000000  000015fc  2**0
                   CONTENTS, READONLY
- 12 .debug_info   000008ac  00000000  00000000  0000162c  2**0
+ 12 .debug_info   000008f8  00000000  00000000  0000162c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000003f5  00000000  00000000  00001ed8  2**0
+ 13 .debug_abbrev 000003f5  00000000  00000000  00001f24  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 000000f0  00000000  00000000  000022d0  2**3
+ 14 .debug_aranges 00000100  00000000  00000000  00002320  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 0000009c  00000000  00000000  000023c0  2**0
+ 15 .debug_rnglists 000000a8  00000000  00000000  00002420  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00000410  00000000  00000000  0000245c  2**0
+ 16 .debug_macro  00000456  00000000  00000000  000024c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000006f4  00000000  00000000  0000286c  2**0
+ 17 .debug_line   00000743  00000000  00000000  0000291e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    0000453a  00000000  00000000  00002f60  2**0
+ 18 .debug_str    00004586  00000000  00000000  00003061  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  0000749a  2**0
+ 19 .comment      00000043  00000000  00000000  000075e7  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  0000024c  00000000  00000000  000074e0  2**2
+ 20 .debug_frame  0000029c  00000000  00000000  0000762c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000056  00000000  00000000  0000772c  2**0
+ 21 .debug_line_str 00000056  00000000  00000000  000078c8  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -125,13 +125,13 @@ void SCB_SetGroupPriority(uint32_t priority){
  8000212:	4770      	bx	lr
  8000214:	e000ed00 	.word	0xe000ed00
 
-08000218 <Systic_Init>:
+08000218 <Systick_Init>:
 
-static ptr_function Systic_Call_Back = 0;
-static uint32_t systic_mode = 0;
-
-
-uint32_t Systic_Init(uint32_t load){
+/*
+ * @brief Initializing System Timer
+ * @param The load to the system timer
+ * */
+uint32_t Systick_Init(uint32_t load){
  8000218:	b480      	push	{r7}
  800021a:	b085      	sub	sp, #20
  800021c:	af00      	add	r7, sp, #0
@@ -142,46 +142,49 @@ uint32_t Systic_Init(uint32_t load){
 	if(load <= 0 || load > 0xFFFFFF){
  8000224:	687b      	ldr	r3, [r7, #4]
  8000226:	2b00      	cmp	r3, #0
- 8000228:	d003      	beq.n	8000232 <Systic_Init+0x1a>
+ 8000228:	d003      	beq.n	8000232 <Systick_Init+0x1a>
  800022a:	687b      	ldr	r3, [r7, #4]
  800022c:	f1b3 7f80 	cmp.w	r3, #16777216	@ 0x1000000
- 8000230:	d302      	bcc.n	8000238 <Systic_Init+0x20>
+ 8000230:	d302      	bcc.n	8000238 <Systick_Init+0x20>
 		ret = FUNC_ERROR;
  8000232:	2301      	movs	r3, #1
  8000234:	60fb      	str	r3, [r7, #12]
- 8000236:	e017      	b.n	8000268 <Systic_Init+0x50>
+ 8000236:	e017      	b.n	8000268 <Systick_Init+0x50>
 	}
 	else{
-	CLEAR_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_ENABLE_MASK);
- 8000238:	4b0f      	ldr	r3, [pc, #60]	@ (8000278 <Systic_Init+0x60>)
+	//Disable Systick
+	CLEAR_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_ENABLE_MASK);
+ 8000238:	4b0f      	ldr	r3, [pc, #60]	@ (8000278 <Systick_Init+0x60>)
  800023a:	681b      	ldr	r3, [r3, #0]
- 800023c:	4a0e      	ldr	r2, [pc, #56]	@ (8000278 <Systic_Init+0x60>)
+ 800023c:	4a0e      	ldr	r2, [pc, #56]	@ (8000278 <Systick_Init+0x60>)
  800023e:	f023 0301 	bic.w	r3, r3, #1
  8000242:	6013      	str	r3, [r2, #0]
-	SYSTIC->SYST_CVR = 0;
- 8000244:	4b0c      	ldr	r3, [pc, #48]	@ (8000278 <Systic_Init+0x60>)
+	//Clear current ticks
+	SYSTICK->SYST_CVR = 0;
+ 8000244:	4b0c      	ldr	r3, [pc, #48]	@ (8000278 <Systick_Init+0x60>)
  8000246:	2200      	movs	r2, #0
  8000248:	609a      	str	r2, [r3, #8]
-	SYSTIC->SYST_RVR = load;
- 800024a:	4a0b      	ldr	r2, [pc, #44]	@ (8000278 <Systic_Init+0x60>)
+	//Load the Systick register
+	SYSTICK->SYST_RVR = load;
+ 800024a:	4a0b      	ldr	r2, [pc, #44]	@ (8000278 <Systick_Init+0x60>)
  800024c:	687b      	ldr	r3, [r7, #4]
  800024e:	6053      	str	r3, [r2, #4]
 #if SYSTIC_CLOCK == SYSTIC_EXTERNAL_CLOCK
-	CLEAR_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_CLOCK_SELECT_MASK);
- 8000250:	4b09      	ldr	r3, [pc, #36]	@ (8000278 <Systic_Init+0x60>)
+	CLEAR_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_CLOCK_SELECT_MASK);
+ 8000250:	4b09      	ldr	r3, [pc, #36]	@ (8000278 <Systick_Init+0x60>)
  8000252:	681b      	ldr	r3, [r3, #0]
- 8000254:	4a08      	ldr	r2, [pc, #32]	@ (8000278 <Systic_Init+0x60>)
+ 8000254:	4a08      	ldr	r2, [pc, #32]	@ (8000278 <Systick_Init+0x60>)
  8000256:	f023 0301 	bic.w	r3, r3, #1
  800025a:	6013      	str	r3, [r2, #0]
-#elif SYSTIC_CLOCK == SYSTIC_CORE_CLOCK
-	SET_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_CLOCK_SELECT_MASK);
+	SET_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_CLOCK_SELECT_MASK);
 #else
 #error "Invalid clock selection"
 #endif
-	CLEAR_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_IRQ_MASK);
- 800025c:	4b06      	ldr	r3, [pc, #24]	@ (8000278 <Systic_Init+0x60>)
+	//Disable IRQ exceptions
+	CLEAR_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_IRQ_MASK);
+ 800025c:	4b06      	ldr	r3, [pc, #24]	@ (8000278 <Systick_Init+0x60>)
  800025e:	681b      	ldr	r3, [r3, #0]
- 8000260:	4a05      	ldr	r2, [pc, #20]	@ (8000278 <Systic_Init+0x60>)
+ 8000260:	4a05      	ldr	r2, [pc, #20]	@ (8000278 <Systick_Init+0x60>)
  8000262:	f023 0302 	bic.w	r3, r3, #2
  8000266:	6013      	str	r3, [r2, #0]
 	}
@@ -196,13 +199,13 @@ uint32_t Systic_Init(uint32_t load){
  8000276:	bf00      	nop
  8000278:	e000e010 	.word	0xe000e010
 
-0800027c <Systic_PereodicInterval>:
-		SET_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_ENABLE_MASK);
+0800027c <Systick_PereodicInterval>:
+		SET_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_ENABLE_MASK);
 	}
 	return ret;
 }
 
-uint32_t Systic_PereodicInterval(uint32_t load ,ptr_function *call_back){
+uint32_t Systick_PereodicInterval(uint32_t load ,ptr_function *call_back){
  800027c:	b480      	push	{r7}
  800027e:	b085      	sub	sp, #20
  8000280:	af00      	add	r7, sp, #0
@@ -214,41 +217,46 @@ uint32_t Systic_PereodicInterval(uint32_t load ,ptr_function *call_back){
 	if(call_back == 0 || load <= 0 || load > 0xFFFFFF){
  800028a:	683b      	ldr	r3, [r7, #0]
  800028c:	2b00      	cmp	r3, #0
- 800028e:	d006      	beq.n	800029e <Systic_PereodicInterval+0x22>
+ 800028e:	d006      	beq.n	800029e <Systick_PereodicInterval+0x22>
  8000290:	687b      	ldr	r3, [r7, #4]
  8000292:	2b00      	cmp	r3, #0
- 8000294:	d003      	beq.n	800029e <Systic_PereodicInterval+0x22>
+ 8000294:	d003      	beq.n	800029e <Systick_PereodicInterval+0x22>
  8000296:	687b      	ldr	r3, [r7, #4]
  8000298:	f1b3 7f80 	cmp.w	r3, #16777216	@ 0x1000000
- 800029c:	d302      	bcc.n	80002a4 <Systic_PereodicInterval+0x28>
+ 800029c:	d302      	bcc.n	80002a4 <Systick_PereodicInterval+0x28>
 		ret = FUNC_ERROR;
  800029e:	2301      	movs	r3, #1
  80002a0:	60fb      	str	r3, [r7, #12]
- 80002a2:	e014      	b.n	80002ce <Systic_PereodicInterval+0x52>
+ 80002a2:	e014      	b.n	80002ce <Systick_PereodicInterval+0x52>
 	}
 	else{
-		SYSTIC->SYST_RVR = load;
- 80002a4:	4a0d      	ldr	r2, [pc, #52]	@ (80002dc <Systic_PereodicInterval+0x60>)
+		//Load the register
+		SYSTICK->SYST_RVR = load;
+ 80002a4:	4a0d      	ldr	r2, [pc, #52]	@ (80002dc <Systick_PereodicInterval+0x60>)
  80002a6:	687b      	ldr	r3, [r7, #4]
  80002a8:	6053      	str	r3, [r2, #4]
+		//Assign the exception you need
 		Systic_Call_Back = call_back;
  80002aa:	683b      	ldr	r3, [r7, #0]
- 80002ac:	4a0c      	ldr	r2, [pc, #48]	@ (80002e0 <Systic_PereodicInterval+0x64>)
+ 80002ac:	4a0c      	ldr	r2, [pc, #48]	@ (80002e0 <Systick_PereodicInterval+0x64>)
  80002ae:	6013      	str	r3, [r2, #0]
-		systic_mode = SYSTIC_PERIODICINTERVAL_MODE;
- 80002b0:	4b0c      	ldr	r3, [pc, #48]	@ (80002e4 <Systic_PereodicInterval+0x68>)
+		//Assign the timer mode to periodic interval
+		systic_mode = SYSTICK_PERIODICINTERVAL_MODE;
+ 80002b0:	4b0c      	ldr	r3, [pc, #48]	@ (80002e4 <Systick_PereodicInterval+0x68>)
  80002b2:	2201      	movs	r2, #1
  80002b4:	601a      	str	r2, [r3, #0]
-		SET_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_IRQ_MASK);
- 80002b6:	4b09      	ldr	r3, [pc, #36]	@ (80002dc <Systic_PereodicInterval+0x60>)
+		//Enable IRQ for systick
+		SET_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_IRQ_MASK);
+ 80002b6:	4b09      	ldr	r3, [pc, #36]	@ (80002dc <Systick_PereodicInterval+0x60>)
  80002b8:	681b      	ldr	r3, [r3, #0]
- 80002ba:	4a08      	ldr	r2, [pc, #32]	@ (80002dc <Systic_PereodicInterval+0x60>)
+ 80002ba:	4a08      	ldr	r2, [pc, #32]	@ (80002dc <Systick_PereodicInterval+0x60>)
  80002bc:	f043 0302 	orr.w	r3, r3, #2
  80002c0:	6013      	str	r3, [r2, #0]
-		SET_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_ENABLE_MASK);
- 80002c2:	4b06      	ldr	r3, [pc, #24]	@ (80002dc <Systic_PereodicInterval+0x60>)
+		//Enable Systick
+		SET_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_ENABLE_MASK);
+ 80002c2:	4b06      	ldr	r3, [pc, #24]	@ (80002dc <Systick_PereodicInterval+0x60>)
  80002c4:	681b      	ldr	r3, [r3, #0]
- 80002c6:	4a05      	ldr	r2, [pc, #20]	@ (80002dc <Systic_PereodicInterval+0x60>)
+ 80002c6:	4a05      	ldr	r2, [pc, #20]	@ (80002dc <Systick_PereodicInterval+0x60>)
  80002c8:	f043 0301 	orr.w	r3, r3, #1
  80002cc:	6013      	str	r3, [r2, #0]
 	}
@@ -265,7 +273,9 @@ uint32_t Systic_PereodicInterval(uint32_t load ,ptr_function *call_back){
  80002e4:	20000020 	.word	0x20000020
 
 080002e8 <SysTick_Handler>:
-
+	val = SYSTICK->SYST_CVR - SYSTICK->SYST_RVR;
+	return val;
+}
 
 
 void SysTick_Handler(void){
@@ -276,25 +286,25 @@ void SysTick_Handler(void){
  80002ee:	681b      	ldr	r3, [r3, #0]
  80002f0:	2b00      	cmp	r3, #0
  80002f2:	d016      	beq.n	8000322 <SysTick_Handler+0x3a>
-		if(systic_mode == SYSTIC_SINGLEINTERVAL_MODE){
+		if(systic_mode == SYSTICK_SINGLEINTERVAL_MODE){
  80002f4:	4b0d      	ldr	r3, [pc, #52]	@ (800032c <SysTick_Handler+0x44>)
  80002f6:	681b      	ldr	r3, [r3, #0]
  80002f8:	2b00      	cmp	r3, #0
  80002fa:	d10f      	bne.n	800031c <SysTick_Handler+0x34>
-			CLEAR_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_ENABLE_POS);
+			CLEAR_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_ENABLE_POS);
  80002fc:	4b0c      	ldr	r3, [pc, #48]	@ (8000330 <SysTick_Handler+0x48>)
  80002fe:	4a0c      	ldr	r2, [pc, #48]	@ (8000330 <SysTick_Handler+0x48>)
  8000300:	681b      	ldr	r3, [r3, #0]
  8000302:	6013      	str	r3, [r2, #0]
-			SYSTIC->SYST_CVR = 0;
+			SYSTICK->SYST_CVR = 0;
  8000304:	4b0a      	ldr	r3, [pc, #40]	@ (8000330 <SysTick_Handler+0x48>)
  8000306:	2200      	movs	r2, #0
  8000308:	609a      	str	r2, [r3, #8]
-			SYSTIC->SYST_RVR = 0;
+			SYSTICK->SYST_RVR = 0;
  800030a:	4b09      	ldr	r3, [pc, #36]	@ (8000330 <SysTick_Handler+0x48>)
  800030c:	2200      	movs	r2, #0
  800030e:	605a      	str	r2, [r3, #4]
-			CLEAR_BIT(SYSTIC->SYST_CSR,SYSTIC_BIT_IRQ_POS);
+			CLEAR_BIT(SYSTICK->SYST_CSR,SYSTICK_BIT_IRQ_POS);
  8000310:	4b07      	ldr	r3, [pc, #28]	@ (8000330 <SysTick_Handler+0x48>)
  8000312:	681b      	ldr	r3, [r3, #0]
  8000314:	4a06      	ldr	r2, [pc, #24]	@ (8000330 <SysTick_Handler+0x48>)
@@ -549,9 +559,9 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef *osc){
  8000490:	40023800 	.word	0x40023800
 
 08000494 <isr>:
+#include "CortexM4/CortexM4_CORE_NVIC.h"
 #include "CortexM4/CortexM4_CORE_SCB.h"
 #include "HAL/RCC/STM32F401xx_HAL_RCC.h"
-#include "CortexM4/CortexM4_CORE_Systic.h"
 void System_Clcok_Config(void);
 uint32_t timmer = 0;
 void isr(void){
@@ -581,13 +591,13 @@ int main(void)
 	System_Clcok_Config();
  80004ba:	f000 f80f 	bl	80004dc <System_Clcok_Config>
 
-	Systic_Init(1000);
+	Systick_Init(1000);
  80004be:	f44f 707a 	mov.w	r0, #1000	@ 0x3e8
- 80004c2:	f7ff fea9 	bl	8000218 <Systic_Init>
-	Systic_PereodicInterval(999999,isr);
+ 80004c2:	f7ff fea9 	bl	8000218 <Systick_Init>
+	Systick_PereodicInterval(999999,isr);
  80004c6:	4903      	ldr	r1, [pc, #12]	@ (80004d4 <main+0x24>)
  80004c8:	4803      	ldr	r0, [pc, #12]	@ (80004d8 <main+0x28>)
- 80004ca:	f7ff fed7 	bl	800027c <Systic_PereodicInterval>
+ 80004ca:	f7ff fed7 	bl	800027c <Systick_PereodicInterval>
     /* Loop forever */
 	while(1){
  80004ce:	bf00      	nop

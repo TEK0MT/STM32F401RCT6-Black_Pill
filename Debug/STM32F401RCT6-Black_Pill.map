@@ -95,20 +95,24 @@ Discarded input sections
  .text.SCB_GetPriorityGrouping
                 0x00000000       0x1c ./Src/CortexM4/CortexM4_CORE_SCB.o
  .debug_macro   0x00000000      0xaba ./Src/CortexM4/CortexM4_CORE_SCB.o
- .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systic.o
- .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systic.o
- .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systic.o
- .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systic.o
- .text          0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systic.o
- .data          0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systic.o
- .bss           0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systic.o
- .text.Systic_DeInit
-                0x00000000       0x3c ./Src/CortexM4/CortexM4_CORE_Systic.o
- .text.Systic_WaitBlocking
-                0x00000000       0x6c ./Src/CortexM4/CortexM4_CORE_Systic.o
- .text.Systic_SingleInterval
-                0x00000000       0x6c ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_macro   0x00000000      0xaba ./Src/CortexM4/CortexM4_CORE_Systic.o
+ .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .group         0x00000000        0xc ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text          0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .data          0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .bss           0x00000000        0x0 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text.Systick_DeInit
+                0x00000000       0x3c ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text.Systick_WaitBlocking
+                0x00000000       0x6c ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text.Systick_SingleInterval
+                0x00000000       0x6c ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text.Systick_GetReminingTicks
+                0x00000000       0x24 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .text.Systick_GetElabsedTicks
+                0x00000000       0x28 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_macro   0x00000000      0xaba ./Src/CortexM4/CortexM4_CORE_Systick.o
  .group         0x00000000        0xc ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .group         0x00000000        0xc ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .group         0x00000000        0xc ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
@@ -132,14 +136,13 @@ Discarded input sections
  .data          0x00000000        0x0 ./Src/main.o
  .bss           0x00000000        0x0 ./Src/main.o
  .debug_macro   0x00000000      0xaba ./Src/main.o
- .debug_macro   0x00000000       0x22 ./Src/main.o
- .debug_macro   0x00000000       0x46 ./Src/main.o
- .debug_macro   0x00000000       0x10 ./Src/main.o
+ .debug_macro   0x00000000       0x1c ./Src/main.o
  .debug_macro   0x00000000       0x40 ./Src/main.o
+ .debug_macro   0x00000000       0x4c ./Src/main.o
+ .debug_macro   0x00000000       0x22 ./Src/main.o
+ .debug_macro   0x00000000       0x10 ./Src/main.o
  .debug_macro   0x00000000       0x22 ./Src/main.o
  .debug_macro   0x00000000      0x1c6 ./Src/main.o
- .debug_macro   0x00000000       0x1c ./Src/main.o
- .debug_macro   0x00000000       0x4c ./Src/main.o
  .group         0x00000000        0xc ./Src/syscalls.o
  .group         0x00000000        0xc ./Src/syscalls.o
  .group         0x00000000        0xc ./Src/syscalls.o
@@ -583,7 +586,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard/crt0.o
 LOAD ./Src/CortexM4/CortexM4_CORE_NVIC.o
 LOAD ./Src/CortexM4/CortexM4_CORE_SCB.o
-LOAD ./Src/CortexM4/CortexM4_CORE_Systic.o
+LOAD ./Src/CortexM4/CortexM4_CORE_Systick.o
 LOAD ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
 LOAD ./Src/main.o
 LOAD ./Src/syscalls.o
@@ -628,14 +631,14 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .text.SCB_SetGroupPriority
                 0x080001d4       0x44 ./Src/CortexM4/CortexM4_CORE_SCB.o
                 0x080001d4                SCB_SetGroupPriority
- .text.Systic_Init
-                0x08000218       0x64 ./Src/CortexM4/CortexM4_CORE_Systic.o
-                0x08000218                Systic_Init
- .text.Systic_PereodicInterval
-                0x0800027c       0x6c ./Src/CortexM4/CortexM4_CORE_Systic.o
-                0x0800027c                Systic_PereodicInterval
+ .text.Systick_Init
+                0x08000218       0x64 ./Src/CortexM4/CortexM4_CORE_Systick.o
+                0x08000218                Systick_Init
+ .text.Systick_PereodicInterval
+                0x0800027c       0x6c ./Src/CortexM4/CortexM4_CORE_Systick.o
+                0x0800027c                Systick_PereodicInterval
  .text.SysTick_Handler
-                0x080002e8       0x4c ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x080002e8       0x4c ./Src/CortexM4/CortexM4_CORE_Systick.o
                 0x080002e8                SysTick_Handler
  .text.HAL_RCC_OscConfig
                 0x08000334      0x100 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
@@ -817,9 +820,9 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .bss           0x20000000       0x1c C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard/crtbegin.o
  *(.bss*)
  .bss.Systic_Call_Back
-                0x2000001c        0x4 ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x2000001c        0x4 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .bss.systic_mode
-                0x20000020        0x4 ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x20000020        0x4 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .bss.timmer    0x20000024        0x4 ./Src/main.o
                 0x20000024                timmer
  *(COMMON)
@@ -853,7 +856,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
  .ARM.attributes
                 0x00000056       0x34 ./Src/CortexM4/CortexM4_CORE_SCB.o
  .ARM.attributes
-                0x0000008a       0x34 ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x0000008a       0x34 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .ARM.attributes
                 0x000000be       0x34 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .ARM.attributes
@@ -870,90 +873,91 @@ LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libm.a
 LOAD C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+fp/hard\libgcc.a
 
-.debug_info     0x00000000      0x8ac
+.debug_info     0x00000000      0x8f8
  .debug_info    0x00000000      0x174 ./Src/CortexM4/CortexM4_CORE_SCB.o
- .debug_info    0x00000174      0x1ee ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_info    0x00000362      0x312 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
- .debug_info    0x00000674      0x208 ./Src/main.o
- .debug_info    0x0000087c       0x30 ./Startup/startup_stm32f401rctx.o
+ .debug_info    0x00000174      0x23a ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_info    0x000003ae      0x312 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+ .debug_info    0x000006c0      0x208 ./Src/main.o
+ .debug_info    0x000008c8       0x30 ./Startup/startup_stm32f401rctx.o
 
 .debug_abbrev   0x00000000      0x3f5
  .debug_abbrev  0x00000000       0xc2 ./Src/CortexM4/CortexM4_CORE_SCB.o
- .debug_abbrev  0x000000c2       0xf4 ./Src/CortexM4/CortexM4_CORE_Systic.o
+ .debug_abbrev  0x000000c2       0xf4 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .debug_abbrev  0x000001b6       0xe7 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_abbrev  0x0000029d      0x134 ./Src/main.o
  .debug_abbrev  0x000003d1       0x24 ./Startup/startup_stm32f401rctx.o
 
-.debug_aranges  0x00000000       0xf0
+.debug_aranges  0x00000000      0x100
  .debug_aranges
                 0x00000000       0x28 ./Src/CortexM4/CortexM4_CORE_SCB.o
  .debug_aranges
-                0x00000028       0x48 ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x00000028       0x58 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .debug_aranges
-                0x00000070       0x28 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+                0x00000080       0x28 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_aranges
-                0x00000098       0x30 ./Src/main.o
+                0x000000a8       0x30 ./Src/main.o
  .debug_aranges
-                0x000000c8       0x28 ./Startup/startup_stm32f401rctx.o
+                0x000000d8       0x28 ./Startup/startup_stm32f401rctx.o
 
 .debug_rnglists
-                0x00000000       0x9c
+                0x00000000       0xa8
  .debug_rnglists
                 0x00000000       0x19 ./Src/CortexM4/CortexM4_CORE_SCB.o
  .debug_rnglists
-                0x00000019       0x31 ./Src/CortexM4/CortexM4_CORE_Systic.o
+                0x00000019       0x3d ./Src/CortexM4/CortexM4_CORE_Systick.o
  .debug_rnglists
-                0x0000004a       0x1a ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+                0x00000056       0x1a ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_rnglists
-                0x00000064       0x1f ./Src/main.o
+                0x00000070       0x1f ./Src/main.o
  .debug_rnglists
-                0x00000083       0x19 ./Startup/startup_stm32f401rctx.o
+                0x0000008f       0x19 ./Startup/startup_stm32f401rctx.o
 
-.debug_macro    0x00000000      0x410
+.debug_macro    0x00000000      0x456
  .debug_macro   0x00000000       0x2a ./Src/CortexM4/CortexM4_CORE_SCB.o
  .debug_macro   0x0000002a       0x46 ./Src/CortexM4/CortexM4_CORE_SCB.o
- .debug_macro   0x00000070       0x3c ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_macro   0x000000ac       0x1c ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_macro   0x000000c8       0x40 ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_macro   0x00000108       0x4c ./Src/CortexM4/CortexM4_CORE_Systic.o
+ .debug_macro   0x00000070       0x3c ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_macro   0x000000ac       0x1c ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_macro   0x000000c8       0x40 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_macro   0x00000108       0x4c ./Src/CortexM4/CortexM4_CORE_Systick.o
  .debug_macro   0x00000154       0x45 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_macro   0x00000199       0x10 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_macro   0x000001a9       0x22 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .debug_macro   0x000001cb      0x1c6 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
- .debug_macro   0x00000391       0x7f ./Src/main.o
+ .debug_macro   0x00000391       0x79 ./Src/main.o
+ .debug_macro   0x0000040a       0x4c ./Src/main.o
 
-.debug_line     0x00000000      0x6f4
+.debug_line     0x00000000      0x743
  .debug_line    0x00000000       0xf9 ./Src/CortexM4/CortexM4_CORE_SCB.o
- .debug_line    0x000000f9      0x24e ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_line    0x00000347      0x16f ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
- .debug_line    0x000004b6      0x1c3 ./Src/main.o
- .debug_line    0x00000679       0x7b ./Startup/startup_stm32f401rctx.o
+ .debug_line    0x000000f9      0x29b ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_line    0x00000394      0x16f ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+ .debug_line    0x00000503      0x1c5 ./Src/main.o
+ .debug_line    0x000006c8       0x7b ./Startup/startup_stm32f401rctx.o
 
-.debug_str      0x00000000     0x453a
+.debug_str      0x00000000     0x4586
  .debug_str     0x00000000     0x3032 ./Src/CortexM4/CortexM4_CORE_SCB.o
                                0x3060 (size before relaxing)
- .debug_str     0x00003032      0x4d0 ./Src/CortexM4/CortexM4_CORE_Systic.o
-                               0x32f2 (size before relaxing)
- .debug_str     0x00003502      0xf3e ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+ .debug_str     0x00003032      0x51c ./Src/CortexM4/CortexM4_CORE_Systick.o
+                               0x333e (size before relaxing)
+ .debug_str     0x0000354e      0xf3e ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
                                0x3ead (size before relaxing)
- .debug_str     0x00004440       0xbb ./Src/main.o
-                               0x4258 (size before relaxing)
- .debug_str     0x000044fb       0x3f ./Startup/startup_stm32f401rctx.o
+ .debug_str     0x0000448c       0xbb ./Src/main.o
+                               0x426e (size before relaxing)
+ .debug_str     0x00004547       0x3f ./Startup/startup_stm32f401rctx.o
                                  0x72 (size before relaxing)
 
 .comment        0x00000000       0x43
  .comment       0x00000000       0x43 ./Src/CortexM4/CortexM4_CORE_SCB.o
                                  0x44 (size before relaxing)
- .comment       0x00000043       0x44 ./Src/CortexM4/CortexM4_CORE_Systic.o
+ .comment       0x00000043       0x44 ./Src/CortexM4/CortexM4_CORE_Systick.o
  .comment       0x00000043       0x44 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
  .comment       0x00000043       0x44 ./Src/main.o
 
-.debug_frame    0x00000000      0x24c
+.debug_frame    0x00000000      0x29c
  .debug_frame   0x00000000       0x58 ./Src/CortexM4/CortexM4_CORE_SCB.o
- .debug_frame   0x00000058       0xf4 ./Src/CortexM4/CortexM4_CORE_Systic.o
- .debug_frame   0x0000014c       0x60 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
- .debug_frame   0x000001ac       0x74 ./Src/main.o
- .debug_frame   0x00000220       0x2c C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
+ .debug_frame   0x00000058      0x144 ./Src/CortexM4/CortexM4_CORE_Systick.o
+ .debug_frame   0x0000019c       0x60 ./Src/HAL/RCC/STM32F401xx_HAL_RCC.o
+ .debug_frame   0x000001fc       0x74 ./Src/main.o
+ .debug_frame   0x00000270       0x2c C:/ST/STM32CubeIDE_1.16.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
 
 .debug_line_str
                 0x00000000       0x56
